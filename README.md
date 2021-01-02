@@ -2,19 +2,20 @@
 
 > !!! This crate is in early development and should not be used. Check back soon. !!!
 
-Safe, immutable auto-increment integers
+Safe, easy-to-use auto-increment integers
 
 ## Features
 
 - [ ] Flexibility
-  - [ ] Can use any integer type
-  - [ ] Converts to any numeric type
+  - [X] Extensible, trait-based interface
+  - [X] Included implementations for all unsigned integers
 - [ ] Safety
-  - [ ] Uses immutable types by default
-  - [ ] Panic-free in release mode
-  - [ ] Uses only the standard library by default
+  - [X] Immutability
+  - [X] Panic-free
+  - [X] Uses only the standard library by default
+  - [ ] Full test coverage
 - [ ] Usability
-  - [ ] Uses sane defaults that mimic PostgreSQL's `SERIAL` data type
+  - [X] Uses sane defaults that mimic PostgreSQL's `SERIAL` data type
   - [ ] Feature flags
     - [ ] Serde implementations
     - [ ] Thread safety

@@ -1,6 +1,6 @@
 [package]
 name = "serial_int"
-description = "Safe, immutable auto-increment integers"
+description = "Safe, easy-to-use auto-increment integers"
 version = "0.1.0"
 authors = ["Jeff Anderson"]
 edition = "2018"
