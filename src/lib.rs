@@ -3,16 +3,6 @@
 ///
 /// This is a simple implementation of a simple concept. This crate is
 /// appropriately tiny. Any extraneous features are behind a feature flag.
-///
-/// # Usage
-///
-///
-///
-/// ```
-/// use crate::*
-///
-/// ```
-///
 
 mod serial;
 mod serial_generator;

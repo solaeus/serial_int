@@ -6,3 +6,13 @@ authors = ["Jeff Anderson"]
 edition = "2018"
 repository = "https://git.sr.ht/~jeffa/serial_int"
 license = "MIT"
+
+[dependencies]
+lazy_static = { version = "*", optional = true }
+
+[features]
+static_generator_u8 = []
+static_generator_u16 = []
+static_generator_u32 = []
+static_generator_u64 = []
+static_generator_usize = []
