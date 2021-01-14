@@ -1,10 +1,10 @@
 use crate::serial_generator;
 
-use std::{fmt::Debug, iter::Step, ops::{Add, AddAssign, Sub}};
+use std::{fmt::Debug, ops::{Add, AddAssign, Sub}};
 
 pub trait Serial
 where
-    Self: Add + AddAssign + Copy + Debug + Eq + Sub + Step,
+    Self: Add + AddAssign + Copy + Debug + Eq + Sub,
 {
     const START: Self;
 
