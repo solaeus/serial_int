@@ -10,7 +10,7 @@ use std::{
 
 #[derive(Clone, Debug)]
 pub struct SerialGenerator<T: Serial = u32> {
-    value: Cell<T>,
+    value: T,
 }
 
 impl<T: Serial> SerialGenerator<T> {
@@ -18,51 +18,38 @@ impl<T: Serial> SerialGenerator<T> {
         Self::default()
     }
 
-    fn with_value(value: T) -> Self {
+    fn with_init_value(value: T) -> Self {
         SerialGenerator {
-            value: Cell::new(value),
+            value,
         }
     }
 
     fn previous(&self) -> Option<T> {
-        let value = self.value.get();
-
-        if value == T::START {
+        if self.value == T::START {
             None
-        } else if value == T::END {
-            Some(value)
+        } else if self.value == T::END {
+            Some(self.value)
         } else {
-            Some(self.value.get().previous())
+            Some(self.value.prev_increment())
         }
     }
 
-    fn next(&self) -> Option<T> {
-        let value = self.value.get();
-
-        if value == T::END {
-            None
-        } else {
-            Some(self.value.get().previous())
-        }
-    }
-
-    fn generate(&self) -> T {
-        let next = self.value.get();
-
-        self.value.set(next.increment());
+    fn generate(&mut self) -> T {
+        let next = self.value.next_increment();
+        self.value = next;
 
         next
     }
 
     fn remaining_increments(&self) -> T {
-        self.value.get().remaining_increments()
+        self.value.remaining_increments()
     }
 }
 
 impl<T: Serial> Default for SerialGenerator<T> {
     fn default() -> Self {
         SerialGenerator {
-            value: Cell::new(T::START)
+            value: T::START
         }
     }
 }

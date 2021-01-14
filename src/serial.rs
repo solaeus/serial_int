@@ -12,9 +12,9 @@ where
 
     const INTERVAL: Self;
 
-    fn increment(&self) -> Self;
+    fn next_increment(&self) -> Self;
 
-    fn previous(&self) -> Self;
+    fn prev_increment(&self) -> Self;
 
     fn remaining_increments(&self) -> Self;
 }
@@ -26,11 +26,11 @@ impl Serial for u8 {
 
     const INTERVAL: Self = 1;
 
-    fn increment(&self) -> Self {
+    fn next_increment(&self) -> Self {
         self.saturating_add(Self::INTERVAL)
     }
 
-    fn previous(&self) -> Self {
+    fn prev_increment(&self) -> Self {
         self.saturating_sub(Self::INTERVAL)
     }
 
@@ -46,11 +46,11 @@ impl Serial for u16 {
 
     const INTERVAL: Self = 1;
 
-    fn increment(&self) -> Self {
+    fn next_increment(&self) -> Self {
         self.saturating_add(Self::INTERVAL)
     }
 
-    fn previous(&self) -> Self {
+    fn prev_increment(&self) -> Self {
         self.saturating_sub(Self::INTERVAL)
     }
 
@@ -66,11 +66,11 @@ impl Serial for u32 {
 
     const INTERVAL: Self = 1;
 
-    fn increment(&self) -> Self {
+    fn next_increment(&self) -> Self {
         self.saturating_add(Self::INTERVAL)
     }
 
-    fn previous(&self) -> Self {
+    fn prev_increment(&self) -> Self {
         self.saturating_sub(Self::INTERVAL)
     }
 
@@ -86,11 +86,11 @@ impl Serial for u64 {
 
     const INTERVAL: Self = 1;
 
-    fn increment(&self) -> Self {
+    fn next_increment(&self) -> Self {
         self.saturating_add(Self::INTERVAL)
     }
 
-    fn previous(&self) -> Self {
+    fn prev_increment(&self) -> Self {
         self.saturating_sub(Self::INTERVAL)
     }
 
@@ -106,11 +106,11 @@ impl Serial for u128 {
 
     const INTERVAL: Self = 1;
 
-    fn increment(&self) -> Self {
+    fn next_increment(&self) -> Self {
         self.saturating_add(Self::INTERVAL)
     }
 
-    fn previous(&self) -> Self {
+    fn prev_increment(&self) -> Self {
         self.saturating_sub(Self::INTERVAL)
     }
 
@@ -126,11 +126,11 @@ impl Serial for usize {
 
     const INTERVAL: Self = 1;
 
-    fn increment(&self) -> Self {
+    fn next_increment(&self) -> Self {
         self.saturating_add(Self::INTERVAL)
     }
 
-    fn previous(&self) -> Self {
+    fn prev_increment(&self) -> Self {
         self.saturating_sub(Self::INTERVAL)
     }
 
