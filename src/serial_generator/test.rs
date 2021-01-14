@@ -1,10 +1,9 @@
 #![cfg(test)]
 
-use std::ops::{Add, AddAssign, Sub};
-
 use crate::{Serial, SerialGenerator};
 
 #[test]
+/// NOTE: This is a slow test.
 fn creates_unique_values_before_end() {
     let gen = SerialGenerator::<u8>::new();
     let mut used = Vec::new();
@@ -19,6 +18,7 @@ fn creates_unique_values_before_end() {
 }
 
 #[test]
+/// NOTE: This is a slow test.
 fn recreates_end_value() {
     let gen = SerialGenerator::<u8>::new();
 
