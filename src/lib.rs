@@ -1,48 +1,7 @@
-pub mod serial_generator;
+#![feature(step_trait)]
 
-use std::ops::{Add, AddAssign};
+mod serial;
+mod serial_generator;
 
-pub trait Serial
-where
-    Self: Add + AddAssign + Copy,
-{
-    const INIT: Self;
-
-    const INTERVAL: Self;
-}
-
-impl Serial for u8 {
-    const INIT: Self = Self::MIN;
-
-    const INTERVAL: Self = 1;
-}
-
-impl Serial for u16 {
-    const INIT: Self = Self::MIN;
-
-    const INTERVAL: Self = 1;
-}
-
-impl Serial for u32 {
-    const INIT: Self = Self::MIN;
-
-    const INTERVAL: Self = 1;
-}
-
-impl Serial for u64 {
-    const INIT: Self = Self::MIN;
-
-    const INTERVAL: Self = 1;
-}
-
-impl Serial for u128 {
-    const INIT: Self = Self::MIN;
-
-    const INTERVAL: Self = 1;
-}
-
-impl Serial for usize {
-    const INIT: Self = Self::MIN;
-
-    const INTERVAL: Self = 1;
-}
+pub use serial::Serial;
+pub use serial_generator::SerialGenerator;
