@@ -2,11 +2,16 @@
 
 Safe, easy-to-use auto-increment integers
 
+Auto-increment integers make great unique identifers because they do not need to
+be large (i.e. using more memory) to prevent collisions. They are always unique
+until they reach their max value, mimicking the behavior of PostgreSQL's
+`SERIAL` data type.
+
 ## Features
 
 - [ ] Usability
-  - [X] Mimics PostgreSQL's `SERIAL` data type
-  - [X] `no_std` 
+  - [X] Straightforward, documented API
+  - [?] `no_std`
   - [ ] Serde support via feature flag
 - [X] Safety
   - [X] Panic-free
@@ -19,6 +24,29 @@ Safe, easy-to-use auto-increment integers
 
 ## Usage
 
+Use a generator to create unique identifiers.
+
+```Rust
+# use serial_int::SerialGenerator;
+#
+static mut user_id_gen: SerialGenerator = SerialGenerator::new();
+
+struct User {
+    id: u32,
+    email: String
+}
+
+impl User {
+    pub fn new() -> Self {
+        User {
+            id: user_id_gen.generate(),
+            email: String::new(),
+        }
+    }
+}
+```
+
 ## Contributing
 
-Submit a patch
+Submit a patch. If you add a new implementation of Serial, add a submodule to
+`tests` using the provided functions.

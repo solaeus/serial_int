@@ -8,7 +8,7 @@ repository = "https://git.sr.ht/~jeffa/serial_int"
 license = "MIT"
 
 [dependencies]
-lazy_static = { version = "*", optional = true }
+lazy_static = "*"
 
 [features]
 static_generator_u8 = []
