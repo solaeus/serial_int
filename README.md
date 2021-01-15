@@ -27,23 +27,7 @@ until they reach their max value, mimicking the behavior of PostgreSQL's
 Use a generator to create unique identifiers.
 
 ```Rust
-# use serial_int::SerialGenerator;
-#
-static mut user_id_gen: SerialGenerator = SerialGenerator::new();
-
-struct User {
-    id: u32,
-    email: String
-}
-
-impl User {
-    pub fn new() -> Self {
-        User {
-            id: user_id_gen.generate(),
-            email: String::new(),
-        }
-    }
-}
+fn main()
 ```
 
 ## Contributing

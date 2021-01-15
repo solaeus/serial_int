@@ -3,43 +3,7 @@
 /// SerialGenerator relies on the implementation of [Serial] for the type that
 /// it generates.
 ///
-/// # Panics
-///
-/// There are no possible scenarios for panicking in this type or in any of the
-/// [Serial] implementations provide by this library.
-///
-/// ```
-/// # use serial_int::SerialGenerator;
-/// # use lazy_static::lazy_static;
-/// # use std::sync::Mutex;
-///
-/// fn main() {
-///     let bob = User::new("bob@domain.xyz");
-///     let fred = User::new("fred@domain.xyz");
-///
-///     assert_eq!(0, bob.id);
-///     assert_eq!(1, fred.id);
-/// }
-///
-/// lazy_static! {
-///     static ref user_id_gen: Mutex<SerialGenerator>
-///         = Mutex::new(SerialGenerator::new());
-/// }
-///
-/// struct User {
-///     id: u32,
-///     email: String
-/// }
-///
-/// impl User {
-///     pub fn new(email: &str) -> Self {
-///         User {
-///             id: user_id_gen.lock().unwrap().generate(),
-///             email: email.to_string(),
-///         }
-///     }
-/// }
-/// ```
+
 
 use crate::Serial;
 
@@ -112,7 +76,7 @@ impl<T: Serial> SerialGenerator<T> {
     ///
     /// Relies on [Serial::remaining_increments].
     pub fn has_remaining_increments(&self) -> bool {
-        self.value.has_remaining_increments()
+        self.value.is_max_value()
     }
 }
 

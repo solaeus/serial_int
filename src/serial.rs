@@ -1,19 +1,27 @@
 /// A trait that defines how a type can be used by SerialGenerator.
 ///
-/// If you implement this for your own type, use the 
+/// If you implement this for your own type, use the
 pub trait Serial
 where
     Self: Clone + Ord,
 {
+    /// The default initial and lowest possible value.
     const START: Self;
 
+    /// Return the next sequential value. Return an equal value if it is at its
+    /// maximum.
     fn next_increment(&self) -> Self;
 
+    /// Return the previous sequential value. Return an equal value if it is at
+    /// its minimum.
     fn prev_increment(&self) -> Self;
 
+    /// Return the number of times this value can be incremented before reaching
+    /// its maximum, using Self to represent the count.
     fn remaining_increments(&self) -> Self;
 
-    fn has_remaining_increments(&self) -> bool;
+    /// Return whether the value is at its maximum value.
+    fn is_max_value(&self) -> bool;
 }
 
 impl Serial for u8 {
@@ -31,7 +39,7 @@ impl Serial for u8 {
         Self::MAX.saturating_sub(*self)
     }
 
-    fn has_remaining_increments(&self) -> bool {
+    fn is_max_value(&self) -> bool {
         self.remaining_increments() > 0
     }
 }
@@ -51,7 +59,7 @@ impl Serial for u16 {
         Self::MAX.saturating_sub(*self)
     }
 
-    fn has_remaining_increments(&self) -> bool {
+    fn is_max_value(&self) -> bool {
         self.remaining_increments() > 0
     }
 }
@@ -71,7 +79,7 @@ impl Serial for u32 {
         Self::MAX.saturating_sub(*self)
     }
 
-    fn has_remaining_increments(&self) -> bool {
+    fn is_max_value(&self) -> bool {
         self.remaining_increments() > 0
     }
 }
@@ -91,7 +99,7 @@ impl Serial for u64 {
         Self::MAX.saturating_sub(*self)
     }
 
-    fn has_remaining_increments(&self) -> bool {
+    fn is_max_value(&self) -> bool {
         self.remaining_increments() > 0
     }
 }
@@ -111,7 +119,7 @@ impl Serial for u128 {
         Self::MAX.saturating_sub(*self)
     }
 
-    fn has_remaining_increments(&self) -> bool {
+    fn is_max_value(&self) -> bool {
         self.remaining_increments() > 0
     }
 }
@@ -131,7 +139,7 @@ impl Serial for usize {
         Self::MAX.saturating_sub(*self)
     }
 
-    fn has_remaining_increments(&self) -> bool {
+    fn is_max_value(&self) -> bool {
         self.remaining_increments() > 0
     }
 }
