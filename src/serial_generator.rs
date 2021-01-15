@@ -1,7 +1,6 @@
 use crate::Serial;
 
 use std::{
-    cell::Cell,
     fmt,
     fmt::{Display, Formatter},
 };
