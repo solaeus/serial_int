@@ -8,4 +8,4 @@ repository = "https://git.sr.ht/~jeffa/serial_int"
 license = "MIT"
 
 [dev-dependencies]
-lazy_static = "*"
+lazy_static = "^1"
