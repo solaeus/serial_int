@@ -9,16 +9,16 @@ until they reach their max value, mimicking the behavior of PostgreSQL's
 
 ## Features
 
-- [ ] Usability
+- [_] Usability
   - [X] Straightforward, documented API
-  - [?] `no_std`
-  - [ ] Serde support via feature flag
+  - [?] `no_std` support
+  - [_] Serde support via feature flag
 - [X] Safety
   - [X] Panic-free
-  - [X] Uses only the standard library by default
+  - [X] No dependencies
   - [X] Full test coverage
 - [X] Extensibility
-  - [X] Trait-based
+  - [X] Support custom serial types with single trait
   - [X] Tests use trait generics, making it test new implementations
   - [X] Included implementations for all unsigned integers in std::core
 
