@@ -1,6 +1,6 @@
 #![cfg(test)]
 
-use crate::{serial, Serial, SerialGenerator};
+use serial_int::{Serial, SerialGenerator};
 
 fn creates_unique_values_until_end<T: Serial + Ord>(start: T) {
     let mut gen = SerialGenerator::with_init_value(start);

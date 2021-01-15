@@ -24,14 +24,14 @@ impl<T: Serial> SerialGenerator<T> {
     /// used with a greater value, [SerialGenerator::previous] may give an
     /// unexpected answer because the "previous" value is calculated, not
     /// recorded.
-    fn with_init_value(value: T) -> Self {
+    pub fn with_init_value(value: T) -> Self {
         SerialGenerator { value }
     }
 
     /// Generate a new instance of the generator's [Serial] type.
     ///
     /// Relies on [Serial::next_increment].
-    fn generate(&mut self) -> T {
+    pub fn generate(&mut self) -> T {
         let current = self.value.clone();
         let next = current.next_increment();
         self.value = next;
@@ -49,7 +49,7 @@ impl<T: Serial> SerialGenerator<T> {
     /// [SerialGenerator::remaining_increments].
     ///
     /// Relies on [Serial::prev_increment].
-    fn previous(&self) -> Option<T> {
+    pub fn previous(&self) -> Option<T> {
         if self.value == T::START {
             None
         } else {
@@ -61,7 +61,7 @@ impl<T: Serial> SerialGenerator<T> {
     /// generator.
     ///
     /// Relies on [Serial::remaining_increments].
-    fn remaining_increments(&self) -> T {
+    pub fn remaining_increments(&self) -> T {
         self.value.remaining_increments()
     }
 
@@ -69,7 +69,7 @@ impl<T: Serial> SerialGenerator<T> {
     /// generated.
     ///
     /// Relies on [Serial::remaining_increments].
-    fn has_remaining_increments(&self) -> bool {
+    pub fn has_remaining_increments(&self) -> bool {
         self.value.has_remaining_increments()
     }
 }
