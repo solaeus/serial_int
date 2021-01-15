@@ -14,31 +14,38 @@ pub struct SerialGenerator<T: Serial = u32> {
 }
 
 impl<T: Serial> SerialGenerator<T> {
+    /// Create a new generator.
     pub fn new() -> Self {
         Self::default()
     }
 
+    /// Create a new generator with the given value.
+    ///
+    /// [Serial::START] is always considered the first value. If this method is
+    /// used with a greater value, [SerialGenerator::previous] may give an
+    /// unexpected answer because the "previous" value is calculated, not
+    /// recorded.
     fn with_init_value(value: T) -> Self {
-        SerialGenerator {
-            value,
-        }
+        SerialGenerator { value }
     }
 
+    /// Return the previously generated value.
+    ///
+    /// This method will return None if the current value is [Serial::START].
     fn previous(&self) -> Option<T> {
         if self.value == T::START {
             None
-        } else if self.value == T::END {
-            Some(self.value)
         } else {
             Some(self.value.prev_increment())
         }
     }
 
     fn generate(&mut self) -> T {
-        let next = self.value.next_increment();
+        let current = self.value;
+        let next = current.next_increment();
         self.value = next;
 
-        next
+        current
     }
 
     fn remaining_increments(&self) -> T {
@@ -48,9 +55,7 @@ impl<T: Serial> SerialGenerator<T> {
 
 impl<T: Serial> Default for SerialGenerator<T> {
     fn default() -> Self {
-        SerialGenerator {
-            value: T::START
-        }
+        SerialGenerator { value: T::START }
     }
 }
 

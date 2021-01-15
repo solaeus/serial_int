@@ -1,15 +1,27 @@
 #![cfg(test)]
 
-use crate::{Serial, SerialGenerator};
+use crate::{serial, Serial, SerialGenerator};
 
 #[test]
-/// NOTE: This is a slow test.
 fn creates_unique_values_before_end() {
-    unimplemented!();
+    let mut gen = SerialGenerator::with_init_value(u32::MAX - 10);
+    let mut used = Vec::new();
+
+    while gen.remaining_increments() > 0 {
+        let serial = gen.generate();
+
+        assert!(!used.contains(&serial));
+
+        used.push(serial);
+    }
 }
 
 #[test]
-/// NOTE: This is a slow test.
 fn recreates_end_value() {
-    unimplemented!();
+    let mut gen = SerialGenerator::with_init_value(u8::MAX - 1);
+
+    assert_eq!(254, gen.generate());
+    assert_eq!(255, gen.generate());
+    assert_eq!(255, gen.generate());
+    assert_eq!(255, gen.generate());
 }

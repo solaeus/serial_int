@@ -1,16 +1,15 @@
 use crate::serial_generator;
 
-use std::{fmt::Debug, ops::{Add, AddAssign, Sub}};
+use std::{
+    fmt::Debug,
+    ops::{Add, AddAssign, Sub},
+};
 
 pub trait Serial
 where
     Self: Add + AddAssign + Copy + Debug + Eq + Sub,
 {
     const START: Self;
-
-    const END: Self;
-
-    const INTERVAL: Self;
 
     fn next_increment(&self) -> Self;
 
@@ -22,16 +21,12 @@ where
 impl Serial for u8 {
     const START: Self = Self::MIN;
 
-    const END: Self = Self::MAX;
-
-    const INTERVAL: Self = 1;
-
     fn next_increment(&self) -> Self {
-        self.saturating_add(Self::INTERVAL)
+        self.saturating_add(1)
     }
 
     fn prev_increment(&self) -> Self {
-        self.saturating_sub(Self::INTERVAL)
+        self.saturating_sub(1)
     }
 
     fn remaining_increments(&self) -> Self {
@@ -42,16 +37,12 @@ impl Serial for u8 {
 impl Serial for u16 {
     const START: Self = Self::MIN;
 
-    const END: Self = Self::MAX;
-
-    const INTERVAL: Self = 1;
-
     fn next_increment(&self) -> Self {
-        self.saturating_add(Self::INTERVAL)
+        self.saturating_add(1)
     }
 
     fn prev_increment(&self) -> Self {
-        self.saturating_sub(Self::INTERVAL)
+        self.saturating_sub(1)
     }
 
     fn remaining_increments(&self) -> Self {
@@ -62,16 +53,12 @@ impl Serial for u16 {
 impl Serial for u32 {
     const START: Self = Self::MIN;
 
-    const END: Self = Self::MAX;
-
-    const INTERVAL: Self = 1;
-
     fn next_increment(&self) -> Self {
-        self.saturating_add(Self::INTERVAL)
+        self.saturating_add(1)
     }
 
     fn prev_increment(&self) -> Self {
-        self.saturating_sub(Self::INTERVAL)
+        self.saturating_sub(1)
     }
 
     fn remaining_increments(&self) -> Self {
@@ -82,16 +69,12 @@ impl Serial for u32 {
 impl Serial for u64 {
     const START: Self = Self::MIN;
 
-    const END: Self = Self::MAX;
-
-    const INTERVAL: Self = 1;
-
     fn next_increment(&self) -> Self {
-        self.saturating_add(Self::INTERVAL)
+        self.saturating_add(1)
     }
 
     fn prev_increment(&self) -> Self {
-        self.saturating_sub(Self::INTERVAL)
+        self.saturating_sub(1)
     }
 
     fn remaining_increments(&self) -> Self {
@@ -102,16 +85,12 @@ impl Serial for u64 {
 impl Serial for u128 {
     const START: Self = Self::MIN;
 
-    const END: Self = Self::MAX;
-
-    const INTERVAL: Self = 1;
-
     fn next_increment(&self) -> Self {
-        self.saturating_add(Self::INTERVAL)
+        self.saturating_add(1)
     }
 
     fn prev_increment(&self) -> Self {
-        self.saturating_sub(Self::INTERVAL)
+        self.saturating_sub(1)
     }
 
     fn remaining_increments(&self) -> Self {
@@ -122,16 +101,12 @@ impl Serial for u128 {
 impl Serial for usize {
     const START: Self = Self::MIN;
 
-    const END: Self = Self::MAX;
-
-    const INTERVAL: Self = 1;
-
     fn next_increment(&self) -> Self {
-        self.saturating_add(Self::INTERVAL)
+        self.saturating_add(1)
     }
 
     fn prev_increment(&self) -> Self {
-        self.saturating_sub(Self::INTERVAL)
+        self.saturating_sub(1)
     }
 
     fn remaining_increments(&self) -> Self {
