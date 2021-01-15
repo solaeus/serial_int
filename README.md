@@ -27,16 +27,69 @@ until they reach their max value, mimicking the behavior of PostgreSQL's
 Use a generator to create unique identifiers.
 
 ```rust
-use serial_int::SerialGenerator;
 let mut gen = SerialGenerator::<u32>::new();
 
 assert_eq!(0, gen.generate());
 assert_eq!(1, gen.generate());
 ```
 
-Using a wrapper to support concurrency or `static ref` for generators that don't
-have an owner is simple. See the [docs](https://docs.rs/serial_int) for a more
-complex example.
+The generator is a simple type with minimal overhead.
+
+```rust
+let generator_size = std::mem::size_of::<SerialGenerator<u8>>();
+
+assert_eq!(1, generator_size);
+```
+
+To support concurrency, simply use a wrapper. You can also use `static ref` for
+generators that don't have an owner.
+
+```rust
+fn main() {
+    let users_mutex = Arc::new(Mutex::new(Vec::new()));
+    let users_clone = Arc::clone(&users_mutex);
+
+    let handle = thread::spawn(move || {
+        let alice = User::new("alice@domain.xyz");
+        let mary = User::new("mary@domain.xyz");
+        let mut users = users_clone.lock().unwrap();
+
+        users.push(alice);
+        users.push(mary);
+    });
+
+    handle.join().unwrap();
+
+    let bob = User::new("bob@domain.xyz");
+    let fred = User::new("fred@domain.xyz");
+    let mut users = users_mutex.lock().unwrap();
+
+    users.push(bob);
+    users.push(fred);
+
+    assert_eq!(4, users.len());
+}
+
+lazy_static! {
+    static ref user_id_gen: Mutex<SerialGenerator>
+        = Mutex::new(SerialGenerator::new());
+}
+
+struct User {
+    id: u32,
+    email: String,
+}
+
+impl User {
+    pub fn new(email: &str) -> Self {
+        User {
+            id: user_id_gen.lock().unwrap().generate(),
+            email: email.to_string(),
+        }
+    }
+}
+```
+
 
 ## Contributing
 

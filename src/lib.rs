@@ -1,7 +1,7 @@
 #![warn(missing_docs)]
 
-//! This crate provides auto-increment integers that are guaranteed to produce
-//! unique values.
+//! This crate provides an auto-increment generator that is guaranteed to
+//! produce unique values.
 //!
 //! This is a simple implementation of a simple concept. This crate is
 //! appropriately tiny.
@@ -24,14 +24,31 @@
 //! ```rust
 //! # use serial_int::SerialGenerator;
 //! # use lazy_static::lazy_static;
-//! # use std::sync::Mutex;
-//!
+//! # use std::{sync::{Arc, Mutex}, thread};
+//! #
 //! fn main() {
+//!     let users_mutex = Arc::new(Mutex::new(Vec::new()));
+//!     let users_clone = Arc::clone(&users_mutex);
+//!
+//!     let handle = thread::spawn(move || {
+//!         let alice = User::new("alice@domain.xyz");
+//!         let mary = User::new("mary@domain.xyz");
+//!         let mut users = users_clone.lock().unwrap();
+//!
+//!         users.push(alice);
+//!         users.push(mary);
+//!     });
+//!
+//!     handle.join().unwrap();
+//!
 //!     let bob = User::new("bob@domain.xyz");
 //!     let fred = User::new("fred@domain.xyz");
+//!     let mut users = users_mutex.lock().unwrap();
 //!
-//!     assert_eq!(0, bob.id);
-//!     assert_eq!(1, fred.id);
+//!     users.push(bob);
+//!     users.push(fred);
+//!
+//!     assert_eq!(4, users.len());
 //! }
 //!
 //! lazy_static! {
@@ -41,7 +58,7 @@
 //!
 //! struct User {
 //!     id: u32,
-//!     email: String
+//!     email: String,
 //! }
 //!
 //! impl User {
@@ -52,6 +69,13 @@
 //!         }
 //!     }
 //! }
+//! ```
+//!
+//! ```
+//! # use serial_int::SerialGenerator;
+//! let generator_size = std::mem::size_of::<SerialGenerator<u8>>();
+//!
+//! assert_eq!(1, generator_size);
 //! ```
 
 mod serial;

@@ -5,8 +5,9 @@ use std::{
     fmt::{Display, Formatter},
 };
 
-/// A utility for generating instances of a given [Serial] type. See the [crate]
-/// documentation for more information.
+/// A utility for generating instances of a given [Serial] type.
+///
+/// See the [crate] documentation for more information.
 #[derive(Clone, Debug)]
 pub struct SerialGenerator<T: Serial = u32> {
     value: T,
