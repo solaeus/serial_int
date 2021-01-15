@@ -71,8 +71,8 @@ fn main() {
 }
 
 lazy_static! {
-    static ref user_id_gen: Mutex<SerialGenerator>
-        = Mutex::new(SerialGenerator::new());
+    static ref user_id_gen: Arc<Mutex<SerialGenerator>>
+        = Arc::new(Mutex::new(SerialGenerator::new()));
 }
 
 struct User {
