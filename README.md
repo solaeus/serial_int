@@ -2,6 +2,8 @@
 
 Safe, easy-to-use auto-increment integers
 
+[Docs](https://docs.rs/serial_int)
+
 Auto-increment integers make great unique identifers because they do not need to
 be large (i.e. using more memory) to prevent collisions. They are always unique
 until they reach their max value, mimicking the behavior of PostgreSQL's
