@@ -2,7 +2,7 @@
 /// unique values.
 ///
 /// This is a simple implementation of a simple concept. This crate is
-/// appropriately tiny. Any extraneous features are behind a feature flag.
+/// appropriately tiny.
 
 mod serial;
 mod serial_generator;
