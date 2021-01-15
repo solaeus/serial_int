@@ -1,3 +1,6 @@
+/// A trait that defines how a type can be used by SerialGenerator.
+///
+/// If you implement this for your own type, use the 
 pub trait Serial
 where
     Self: Clone + Ord,
