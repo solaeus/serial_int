@@ -3,7 +3,7 @@
 use crate::{serial, Serial, SerialGenerator};
 
 #[test]
-fn creates_unique_values_before_end() {
+fn creates_unique_values_until_end() {
     let mut gen = SerialGenerator::with_init_value(u32::MAX - 10);
     let mut used = Vec::new();
 
