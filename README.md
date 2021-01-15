@@ -26,9 +26,17 @@ until they reach their max value, mimicking the behavior of PostgreSQL's
 
 Use a generator to create unique identifiers.
 
-```Rust
-fn main()
+```rust
+use serial_int::SerialGenerator;
+let mut gen = SerialGenerator::<u32>::new();
+
+assert_eq!(0, gen.generate());
+assert_eq!(1, gen.generate());
 ```
+
+Using a wrapper to support concurrency or `static ref` for generators that don't
+have an owner is simple. See the [docs](https://docs.rs/serial_int) for a more
+complex example.
 
 ## Contributing
 

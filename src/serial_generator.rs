@@ -1,10 +1,3 @@
-/// A constant-time producer of unique values created by incrementation.
-///
-/// SerialGenerator relies on the implementation of [Serial] for the type that
-/// it generates.
-///
-
-
 use crate::Serial;
 
 use std::{
@@ -12,7 +5,8 @@ use std::{
     fmt::{Display, Formatter},
 };
 
-/// A utility for generating instances of a given [Serial] type.
+/// A utility for generating instances of a given [Serial] type. See the [crate]
+/// documentation for more information.
 #[derive(Clone, Debug)]
 pub struct SerialGenerator<T: Serial = u32> {
     value: T,
