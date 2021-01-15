@@ -7,7 +7,7 @@ use std::{
 
 pub trait Serial
 where
-    Self: Add + AddAssign + Copy + Debug + Eq + Sub,
+    Self: Clone + Ord,
 {
     const START: Self;
 
@@ -16,6 +16,8 @@ where
     fn prev_increment(&self) -> Self;
 
     fn remaining_increments(&self) -> Self;
+
+    fn has_remaining_increments(&self) -> bool;
 }
 
 impl Serial for u8 {
@@ -31,6 +33,10 @@ impl Serial for u8 {
 
     fn remaining_increments(&self) -> Self {
         Self::MAX.saturating_sub(*self)
+    }
+
+    fn has_remaining_increments(&self) -> bool {
+        self.remaining_increments() > 0
     }
 }
 
@@ -48,6 +54,10 @@ impl Serial for u16 {
     fn remaining_increments(&self) -> Self {
         Self::MAX.saturating_sub(*self)
     }
+
+    fn has_remaining_increments(&self) -> bool {
+        self.remaining_increments() > 0
+    }
 }
 
 impl Serial for u32 {
@@ -63,6 +73,10 @@ impl Serial for u32 {
 
     fn remaining_increments(&self) -> Self {
         Self::MAX.saturating_sub(*self)
+    }
+
+    fn has_remaining_increments(&self) -> bool {
+        self.remaining_increments() > 0
     }
 }
 
@@ -80,6 +94,10 @@ impl Serial for u64 {
     fn remaining_increments(&self) -> Self {
         Self::MAX.saturating_sub(*self)
     }
+
+    fn has_remaining_increments(&self) -> bool {
+        self.remaining_increments() > 0
+    }
 }
 
 impl Serial for u128 {
@@ -96,6 +114,10 @@ impl Serial for u128 {
     fn remaining_increments(&self) -> Self {
         Self::MAX.saturating_sub(*self)
     }
+
+    fn has_remaining_increments(&self) -> bool {
+        self.remaining_increments() > 0
+    }
 }
 
 impl Serial for usize {
@@ -111,5 +133,9 @@ impl Serial for usize {
 
     fn remaining_increments(&self) -> Self {
         Self::MAX.saturating_sub(*self)
+    }
+
+    fn has_remaining_increments(&self) -> bool {
+        self.remaining_increments() > 0
     }
 }

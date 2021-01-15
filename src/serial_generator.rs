@@ -1,5 +1,3 @@
-mod test;
-
 use crate::Serial;
 
 use std::{
@@ -34,7 +32,7 @@ impl<T: Serial> SerialGenerator<T> {
     ///
     /// Relies on [Serial::next_increment].
     fn generate(&mut self) -> T {
-        let current = self.value;
+        let current = self.value.clone();
         let next = current.next_increment();
         self.value = next;
 
@@ -65,6 +63,14 @@ impl<T: Serial> SerialGenerator<T> {
     /// Relies on [Serial::remaining_increments].
     fn remaining_increments(&self) -> T {
         self.value.remaining_increments()
+    }
+
+    /// Return a boolean representing whether unique values can still be
+    /// generated.
+    ///
+    /// Relies on [Serial::remaining_increments].
+    fn has_remaining_increments(&self) -> bool {
+        self.value.has_remaining_increments()
     }
 }
 
