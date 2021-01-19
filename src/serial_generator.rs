@@ -45,8 +45,8 @@ impl<T: Serial> SerialGenerator<T> {
     /// This method will return None if the current value is [Serial::START].
     ///
     /// The return value is calculated, not recorded. If the highest possible
-    /// value has been reached, this method will continue to return one less
-    /// than that value. To check that unique values can still be generated, use
+    /// value has been reached, this method will still return one less than that
+    /// value. To check that unique values can still be generated, use
     /// [SerialGenerator::remaining_increments].
     ///
     /// Relies on [Serial::prev_increment].
@@ -69,9 +69,18 @@ impl<T: Serial> SerialGenerator<T> {
     /// Return a boolean representing whether unique values can still be
     /// generated.
     ///
-    /// Relies on [Serial::remaining_increments].
-    pub fn has_remaining_increments(&self) -> bool {
+    /// Relies on [Serial::is_max_value].
+    pub fn is_at_max(&self) -> bool {
         self.value.is_max_value()
+    }
+
+    /// Alias of [Self::is_at_max].
+    #[deprecated(
+        since = "0.2.2",
+        note = "Please use is_at_max instead."
+    )]
+    pub fn has_remaining_increments(&self) -> bool {
+        self.is_at_max()
     }
 }
 

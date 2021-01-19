@@ -38,7 +38,7 @@ impl Serial for u8 {
     }
 
     fn is_max_value(&self) -> bool {
-        self.remaining_increments() > 0
+        self == &Self::MAX
     }
 }
 
@@ -58,7 +58,7 @@ impl Serial for u16 {
     }
 
     fn is_max_value(&self) -> bool {
-        self.remaining_increments() > 0
+        self == &Self::MAX
     }
 }
 
@@ -78,7 +78,7 @@ impl Serial for u32 {
     }
 
     fn is_max_value(&self) -> bool {
-        self.remaining_increments() > 0
+        self == &Self::MAX
     }
 }
 
@@ -98,7 +98,7 @@ impl Serial for u64 {
     }
 
     fn is_max_value(&self) -> bool {
-        self.remaining_increments() > 0
+        self == &Self::MAX
     }
 }
 
@@ -118,7 +118,7 @@ impl Serial for u128 {
     }
 
     fn is_max_value(&self) -> bool {
-        self.remaining_increments() > 0
+        self == &Self::MAX
     }
 }
 
@@ -138,6 +138,6 @@ impl Serial for usize {
     }
 
     fn is_max_value(&self) -> bool {
-        self.remaining_increments() > 0
+        self == &Self::MAX
     }
 }
