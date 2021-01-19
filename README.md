@@ -69,12 +69,15 @@ fn main() {
     users.push(bob);
     users.push(fred);
 
-    assert_eq!(4, users.len());
+    assert_eq!(0, users[0].id);
+    assert_eq!(1, users[1].id);
+    assert_eq!(2, users[2].id);
+    assert_eq!(3, users[3].id);
 }
 
 lazy_static! {
-    static ref user_id_gen: Arc<Mutex<SerialGenerator>>
-        = Arc::new(Mutex::new(SerialGenerator::new()));
+    static ref USER_ID_GEN: Mutex<SerialGenerator>
+        = Mutex::new(SerialGenerator::new());
 }
 
 struct User {
@@ -85,7 +88,7 @@ struct User {
 impl User {
     pub fn new(email: &str) -> Self {
         User {
-            id: user_id_gen.lock().unwrap().generate(),
+            id: USER_ID_GEN.lock().unwrap().generate(),
             email: email.to_string(),
         }
     }

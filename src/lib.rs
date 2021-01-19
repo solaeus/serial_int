@@ -13,6 +13,8 @@
 //!
 //! # Examples
 //!
+//! A simple example.
+//!
 //! ```rust
 //! # use serial_int::SerialGenerator;
 //! let mut gen = SerialGenerator::<u32>::new();
@@ -20,6 +22,8 @@
 //! assert_eq!(0, gen.generate());
 //! assert_eq!(1, gen.generate());
 //! ```
+//!
+//! A complex example showing the use of `static` and concurrency
 //!
 //! ```rust
 //! # use serial_int::SerialGenerator;
@@ -48,12 +52,15 @@
 //!     users.push(bob);
 //!     users.push(fred);
 //!
-//!     assert_eq!(4, users.len());
+//!     assert_eq!(0, users[0].id);
+//!     assert_eq!(1, users[1].id);
+//!     assert_eq!(2, users[2].id);
+//!     assert_eq!(3, users[3].id);
 //! }
 //!
 //! lazy_static! {
-//!     static ref user_id_gen: Arc<Mutex<SerialGenerator>>
-//!         = Arc::new(Mutex::new(SerialGenerator::new()));
+//!     static ref USER_ID_GEN: Mutex<SerialGenerator>
+//!         = Mutex::new(SerialGenerator::new());
 //! }
 //!
 //! struct User {
@@ -64,18 +71,11 @@
 //! impl User {
 //!     pub fn new(email: &str) -> Self {
 //!         User {
-//!             id: user_id_gen.lock().unwrap().generate(),
+//!             id: USER_ID_GEN.lock().unwrap().generate(),
 //!             email: email.to_string(),
 //!         }
 //!     }
 //! }
-//! ```
-//!
-//! ```
-//! # use serial_int::SerialGenerator;
-//! let generator_size = std::mem::size_of::<SerialGenerator<u8>>();
-//!
-//! assert_eq!(1, generator_size);
 //! ```
 
 mod serial;
