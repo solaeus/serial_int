@@ -1,6 +1,14 @@
 [package]
 name = "serial_int"
 description = "Safe, easy-to-use auto-increment integers"
+categories = [ "no-std" ]
+keywords = [
+    "serial",
+    "auto-increment",
+    "id",
+    "uuid",
+    "integer"
+]
 version = "0.2.1"
 authors = ["Jeff Anderson"]
 edition = "2018"
