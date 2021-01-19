@@ -15,20 +15,9 @@
 //! generator (except for the greatest possible value, e.g. u8::MAX or
 //! u32::MAX).
 //!
-//! ## Features
+//! # Panics
 //!
-//! - Usability
-//!   - [X] Straightforward, documented API
-//!   - [X] Includes support for all unsigned integers in the standard library
-//!   - [?] `no_std`
-//!   - [_] Serde support via feature flag
-//! - Safety
-//!   - [X] Panic-free
-//!   - [X] No dependencies
-//!   - [X] Full test coverage
-//! - Extensibility
-//!   - [X] Support custom serial types with single trait
-//!   - [X] Tests use trait generics, making it easy to test new implementations
+//! None
 //!
 //! # Examples
 //!
