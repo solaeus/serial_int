@@ -92,8 +92,12 @@ impl<T: Serial> Iterator for SerialGenerator<T> {
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let next_value = self.generate();
+        if self.is_at_max() {
+            None
+        } else {
+            let next_value = self.generate();
 
-        Some(next_value)
+            Some(next_value)
+        }
     }
 }
