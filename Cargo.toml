@@ -9,7 +9,7 @@ keywords = [
     "uuid",
     "integer"
 ]
-version = "0.2.3"
+version = "0.3.0"
 authors = ["Jeff Anderson"]
 edition = "2018"
 repository = "https://git.sr.ht/~jeffa/serial_int"

@@ -16,6 +16,10 @@ where
 
     /// Return the number of times this value can be incremented before reaching
     /// its maximum, using Self to represent the count.
+    #[deprecated(
+        since = "0.3.0",
+        note = "Please use is_max_value instead."
+    )]
     fn remaining_increments(&self) -> Self;
 
     /// Return a boolean representing whether the value is equal to its maximum.
