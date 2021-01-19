@@ -8,7 +8,7 @@ pub fn creates_unique_values_until_end<T: Serial + Ord>(start: T) {
     let mut gen = SerialGenerator::with_init_value(start);
     let mut used = Vec::new();
 
-    while gen.has_remaining_increments() {
+    while gen.is_at_max() {
         let serial = gen.generate();
 
         assert!(!used.contains(&serial));
