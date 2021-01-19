@@ -18,7 +18,7 @@ where
     /// its maximum, using Self to represent the count.
     fn remaining_increments(&self) -> Self;
 
-    /// Return whether the value is at its maximum value.
+    /// Return a boolean representing whether the value is equal to its maximum.
     fn is_max_value(&self) -> bool;
 }
 
