@@ -1,15 +1,36 @@
 #![warn(missing_docs)]
 
-//! This crate provides an auto-increment generator that is guaranteed to
-//! produce unique values.
+//! Serial (or auto-increment) integers make great unique identifers because
+//! they do not need to be large (i.e. using more memory) to prevent collisions.
+//! They are always unique until they reach their max value, mimicking the
+//! behavior of PostgreSQL's `SERIAL` data type. Creating serial values has
+//! minimal performance impact because it relies on simple adding rather than
+//! hashing or randomizing.
 //!
-//! This is a simple implementation of a simple concept. This crate is
-//! appropriately tiny.
+//! This crate provides a generator (that is also an iterator) that outputs
+//! serial values. By default, any unsigned integer from the standard library
+//! can be generated. This is essentially a counter, a simple iterator for
+//! integers. This crate is appropriately tiny.
 //!
-//! # Panics
+//! For safety and stability, the generator "saturates" the values instead of
+//! overflowing. This guarantess that the output values are unique to that
+//! generator (except for the greatest possible value, e.g. u8::MAX or
+//! u32::MAX).
 //!
-//! There are no possible scenarios for panicking in this type or in any of the
-//! [Serial] implementations provide by this library.
+//! ## Features
+//!
+//! - Usability
+//!   - [X] Straightforward, documented API
+//!   - [X] Includes support for all unsigned integers in the standard library
+//!   - [?] `no_std`
+//!   - [_] Serde support via feature flag
+//! - Safety
+//!   - [X] Panic-free
+//!   - [X] No dependencies
+//!   - [X] Full test coverage
+//! - Extensibility
+//!   - [X] Support custom serial types with single trait
+//!   - [X] Tests use trait generics, making it easy to test new implementations
 //!
 //! # Examples
 //!

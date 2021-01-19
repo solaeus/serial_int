@@ -7,14 +7,15 @@ Safe, easy-to-use auto-increment integers
 - [Issues](https://todo.sr.ht/~jeffa/serial_int)
 
 Serial (or auto-increment) integers make great unique identifers because they do
-not need to be large (i.e. using more memory) to prevent collisions. They are
+not need to be large (i.e. using more memory) to prevent collisions.  They are
 always unique until they reach their max value, mimicking the behavior of
 PostgreSQL's `SERIAL` data type. Creating serial values has minimal performance
 impact because it relies on simple adding rather than hashing or randomizing.
 
 This crate provides a generator (that is also an iterator) that outputs serial
 values. By default, any unsigned integer from the standard library can be
-generated. This is essentially a counter, a simple iterator for integers.
+generated. This is essentially a counter, a simple iterator for integers. This
+crate is appropriately tiny.
 
 For safety and stability, the generator "saturates" the values instead of
 overflowing. This guarantess that the output values are unique to that generator
@@ -44,14 +45,6 @@ let mut gen = SerialGenerator::<u32>::new();
 
 assert_eq!(0, gen.generate());
 assert_eq!(1, gen.generate());
-```
-
-The generator is a simple type with minimal overhead.
-
-```rust
-let generator_size = std::mem::size_of::<SerialGenerator<u8>>();
-
-assert_eq!(1, generator_size);
 ```
 
 To support concurrency, simply use a wrapper. You can also use `static ref` for
