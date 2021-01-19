@@ -26,7 +26,7 @@ overflowing. This guarantess that the output values are unique to that generator
 - Usability
   - [X] Straightforward, documented API
   - [X] Includes support for all unsigned integers in the standard library
-  - [?] `no_std`
+  - [X] `no_std`
   - [_] Serde support via feature flag
 - Safety
   - [X] Panic-free
