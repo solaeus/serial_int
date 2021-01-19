@@ -1,11 +1,9 @@
-#![warn(missing_docs)]
-
-//! Serial (or auto-increment) integers make great unique identifers because
-//! they do not need to be large (i.e. using more memory) to prevent collisions.
-//! They are always unique until they reach their max value, mimicking the
-//! behavior of PostgreSQL's `SERIAL` data type. Creating serial values has
-//! minimal performance impact because it relies on simple adding rather than
-//! hashing or randomizing.
+//! Serial (or auto-increment) integers make great unique identifers. They do
+//! not need to be large (i.e. using more memory) to prevent collisions and they
+//! are always unique until they reach their max value, mimicking the behavior
+//! of PostgreSQL's `SERIAL` data type. Creating serial values has minimal
+//! performance impact because it relies on simple adding rather than hashing or
+//! randomizing.
 //!
 //! This crate provides a generator (that is also an iterator) that outputs
 //! serial values. By default, any unsigned integer from the standard library
@@ -98,6 +96,8 @@
 //!     }
 //! }
 //! ```
+
+#![warn(missing_docs)]
 
 mod serial;
 mod serial_generator;
