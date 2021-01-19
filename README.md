@@ -2,27 +2,38 @@
 
 Safe, easy-to-use auto-increment integers
 
-[Docs](https://docs.rs/serial_int)
+- [Docs](https://docs.rs/serial_int)
+- [Repository](https://sr.ht/~jeffa/serial_int)
+- [Issues](https://todo.sr.ht/~jeffa/serial_int)
 
-Auto-increment integers make great unique identifers because they do not need to
-be large (i.e. using more memory) to prevent collisions. They are always unique
-until they reach their max value, mimicking the behavior of PostgreSQL's
-`SERIAL` data type.
+Serial (or auto-increment) integers make great unique identifers because they do
+not need to be large (i.e. using more memory) to prevent collisions. They are
+always unique until they reach their max value, mimicking the behavior of
+PostgreSQL's `SERIAL` data type. Creating serial values has minimal performance
+impact because it relies on simple adding rather than hashing or randomizing.
+
+This crate provides a generator (that is also an iterator) that outputs serial
+values. By default, any unsigned integer from the standard library can be
+generated. This is essentially a counter, a simple iterator for integers.
+
+For safety and stability, the generator "saturates" the values instead of
+overflowing. This guarantess that the output values are unique to that generator
+(except for the greatest possible value, e.g. u8::MAX or u32::MAX).
 
 ## Features
 
-- [_] Usability
+- Usability
   - [X] Straightforward, documented API
-  - [?] `no_std` support
+  - [X] Includes support for all unsigned integers in the standard library
+  - [?] `no_std`
   - [_] Serde support via feature flag
-- [X] Safety
+- Safety
   - [X] Panic-free
   - [X] No dependencies
   - [X] Full test coverage
-- [X] Extensibility
+- Extensibility
   - [X] Support custom serial types with single trait
-  - [X] Tests use trait generics, making it test new implementations
-  - [X] Included implementations for all unsigned integers in std::core
+  - [X] Tests use trait generics, making it easy to test new implementations
 
 ## Usage
 
