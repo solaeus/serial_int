@@ -8,7 +8,7 @@ use std::{
 /// A utility for generating instances of a given [Serial] type.
 ///
 /// See the [crate] documentation for more information.
-#[derive(Clone, Debug)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct SerialGenerator<T: Serial = u32> {
     value: T,
 }
@@ -73,6 +73,12 @@ impl<T: Serial> SerialGenerator<T> {
     )]
     pub fn has_remaining_increments(&self) -> bool {
         self.is_at_max()
+    }
+}
+
+impl <T: Serial, U: Serial + From<T>> From<T> for SerialGenerator<U> {
+    fn from(other: T) -> Self {
+        SerialGenerator::with_init_value(other.into())
     }
 }
 
