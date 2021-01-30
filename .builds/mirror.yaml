@@ -1,0 +1,19 @@
+# Mirror the repository to a GitHub repo
+#
+# Requires an SSH key that has been added to the Github account and to the
+# SourceHut account as a build secret.
+image: ubuntu/latest
+packages:
+  - git
+sources:
+  - https://git.sr.ht/~jeffa/serial_int
+secrets:
+  - 9ab6093e-ca54-43e8-b288-de2ed084dc0d
+tasks:
+  - setup: |
+      echo "StrictHostKeyChecking no" > ~/.ssh/config
+      cd serial_int
+      git remote add github git@github.com:JKAnderson409/serial_int.git
+  - push: |
+      cd serial_int
+      git push github master
