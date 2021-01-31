@@ -18,7 +18,7 @@ generated. This is essentially a counter, a simple iterator for integers. This
 crate is appropriately tiny.
 
 For safety and stability, the generator "saturates" the values instead of
-overflowing. This guarantess that the output values are unique to that generator
+overflowing. This guarantees that the output values are unique to that generator
 (except for the greatest possible value, e.g. u8::MAX or u32::MAX).
 
 ## Features
