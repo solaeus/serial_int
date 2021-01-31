@@ -7,7 +7,7 @@ Safe, easy-to-use auto-increment integers
 - [Issues](https://todo.sr.ht/~jeffa/serial_int)
 - [GitHub mirror](https://github.com/JKAnderson409/serial_int)
 
-Serial (or auto-increment) integers make great unique identifers because they do
+Serial (or auto-increment) integers make great unique identifiers because they do
 not need to be large (i.e. using more memory) to prevent collisions.  They are
 always unique until they reach their max value, mimicking the behavior of
 PostgreSQL's `SERIAL` data type. Creating serial values has minimal performance
