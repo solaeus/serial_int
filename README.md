@@ -5,6 +5,7 @@ Safe, easy-to-use auto-increment integers
 - [Docs](https://docs.rs/serial_int)
 - [Repository](https://sr.ht/~jeffa/serial_int)
 - [Issues](https://todo.sr.ht/~jeffa/serial_int)
+- [GitHub mirror](https://github.com/JKAnderson409/serial_int)
 
 Serial (or auto-increment) integers make great unique identifers because they do
 not need to be large (i.e. using more memory) to prevent collisions.  They are
