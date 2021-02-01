@@ -5,9 +5,13 @@ use std::{
     fmt::{Display, Formatter},
 };
 
+#[cfg(feature = "serde_impl")]
+use serde::{Deserialize, Serialize};
+
 /// A utility for generating instances of a given [Serial] type.
 ///
 /// See the [crate] documentation for more information.
+#[cfg_attr(feature = "serde_impl", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct SerialGenerator<T: Serial = u32> {
     value: T,

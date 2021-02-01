@@ -1,7 +1,7 @@
 [package]
 name = "serial_int"
 description = "Safe, easy-to-use auto-increment integers"
-categories = [ "no-std" ]
+categories = ["no-std"]
 keywords = [
     "serial",
     "auto-increment",
@@ -15,5 +15,15 @@ edition = "2018"
 repository = "https://git.sr.ht/~jeffa/serial_int"
 license = "MIT"
 
+[features]
+serde_impl = ["serde"]
+
+[dependencies]
+    [dependencies.serde]
+    version = "*"
+    features = ["derive"]
+    optional = true
+
 [dev-dependencies]
 lazy_static = "^1"
+toml = "0.5"
