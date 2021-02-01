@@ -32,7 +32,9 @@
 //! assert_eq!(1, gen.generate());
 //! ```
 //!
-//! Serialize the generator with Serde.
+//! ## Using the "serde_impl" feature
+//!
+//! Serialize a generator with Serde.
 //!
 //! ```rust
 //! # use serial_int::SerialGenerator;
@@ -48,7 +50,7 @@
 //! assert_eq!("value = 2\n", gen_string);
 //! ```
 //!
-//! Deserialize the generator with Serde.
+//! Deserialize a generator with Serde.
 //!
 //! ```rust
 //! # use serial_int::SerialGenerator;
@@ -61,7 +63,9 @@
 //! assert_eq!(gen_from_toml, gen);
 //! ```
 //!
-//! This crate works in a `no_std` context.
+//! ## Using `no_std`
+//!
+//! No feature flags are needed.
 //!
 //! ```rust
 //! #![no_std]
@@ -69,10 +73,13 @@
 //!
 //! fn main() {
 //!     let mut gen = SerialGenerator::<u8>::new();
+//!     let serial_ids = [gen.generate(), gen.generate()];
 //!
-//!     gen.generate();
+//!     assert_eq!([0, 1], serial_ids);
 //! }
 //! ```
+//!
+//! ## Other
 //!
 //! A complex example showing the use of `static` and concurrency
 //!
