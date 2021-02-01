@@ -28,7 +28,7 @@ overflowing. This guarantees that the output values are unique to that generator
   - [X] Straightforward, documented API
   - [X] Includes support for all unsigned integers in the standard library
   - [X] `no_std`
-  - [_] Serde support via feature flag
+  - [X] Serde support via "serde_impl" feature flag
 - Safety
   - [X] Panic-free
   - [X] No dependencies
@@ -48,58 +48,7 @@ assert_eq!(0, gen.generate());
 assert_eq!(1, gen.generate());
 ```
 
-To support concurrency, simply use a wrapper. You can also use `static ref` for
-generators that don't have an owner.
-
-```rust
-fn main() {
-    let users_mutex = Arc::new(Mutex::new(Vec::new()));
-    let users_clone = Arc::clone(&users_mutex);
-
-    let handle = thread::spawn(move || {
-        let alice = User::new("alice@domain.xyz");
-        let mary = User::new("mary@domain.xyz");
-        let mut users = users_clone.lock().unwrap();
-
-        users.push(alice);
-        users.push(mary);
-    });
-
-    handle.join().unwrap();
-
-    let bob = User::new("bob@domain.xyz");
-    let fred = User::new("fred@domain.xyz");
-    let mut users = users_mutex.lock().unwrap();
-
-    users.push(bob);
-    users.push(fred);
-
-    assert_eq!(0, users[0].id);
-    assert_eq!(1, users[1].id);
-    assert_eq!(2, users[2].id);
-    assert_eq!(3, users[3].id);
-}
-
-lazy_static! {
-    static ref USER_ID_GEN: Mutex<SerialGenerator>
-        = Mutex::new(SerialGenerator::new());
-}
-
-struct User {
-    id: u32,
-    email: String,
-}
-
-impl User {
-    pub fn new(email: &str) -> Self {
-        User {
-            id: USER_ID_GEN.lock().unwrap().generate(),
-            email: email.to_string(),
-        }
-    }
-}
-```
-
+More examples are available in the [docs](https://docs.rs/serial_int/#examples).
 
 ## Contributing
 
