@@ -31,6 +31,35 @@
 //! assert_eq!(1, gen.generate());
 //! ```
 //!
+//! Serialize the generator with Serde.
+//!
+//! ```rust
+//! # use serial_int::SerialGenerator;
+//! # use toml;
+//! #
+//! let mut gen = SerialGenerator::<u8>::new();
+//!
+//! gen.generate();
+//! gen.generate();
+//!
+//! let gen_string = toml::to_string(&gen).unwrap();
+//!
+//! assert_eq!("value = 2\n", gen_string);
+//! ```
+//!
+//! Deserialize the generator with Serde.
+//!
+//! ```rust
+//! # use serial_int::SerialGenerator;
+//! # use toml;
+//! #
+//! let gen = SerialGenerator::<u8>::new();
+//! let gen_from_toml =
+//!     toml::from_str::<SerialGenerator<u8>>("value = 0\n").unwrap();
+//!
+//! assert_eq!(gen_from_toml, gen);
+//! ```
+//!
 //! A complex example showing the use of `static` and concurrency
 //!
 //! ```rust
