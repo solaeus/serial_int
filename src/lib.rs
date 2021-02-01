@@ -25,6 +25,7 @@
 //!
 //! ```rust
 //! # use serial_int::SerialGenerator;
+//! #
 //! let mut gen = SerialGenerator::<u32>::new();
 //!
 //! assert_eq!(0, gen.generate());
@@ -58,6 +59,19 @@
 //!     toml::from_str::<SerialGenerator<u8>>("value = 0\n").unwrap();
 //!
 //! assert_eq!(gen_from_toml, gen);
+//! ```
+//!
+//! This crate works in a `no_std` context.
+//!
+//! ```rust
+//! #![no_std]
+//! # use serial_int::SerialGenerator;
+//!
+//! fn main() {
+//!     let mut gen = SerialGenerator::<u8>::new();
+//!
+//!     gen.generate();
+//! }
 //! ```
 //!
 //! A complex example showing the use of `static` and concurrency
