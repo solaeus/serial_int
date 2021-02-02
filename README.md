@@ -64,5 +64,5 @@ Contributions are also welcome on the Github mirror.
 
 ### 🦀🔧 Contributors 🔧🦀
 
-- Jeff Anderson 🐙 (creator/maintainer) - [Sourcehut](https://sr.ht/~jeffa/) | [Github] (https://github.com/JKAnderson409) | https://jeffa.io
+- Jeff Anderson 🐙 (creator/maintainer) - [Sourcehut](https://sr.ht/~jeffa/) | [Github](https://github.com/JKAnderson409) | https://jeffa.io
 - Yash Karandikar 🧞 (community contributor) - [Sourcehut](https://lists.sr.ht/~karx) | [Github](https://github.com/karx1) | https://karx.xyz/
