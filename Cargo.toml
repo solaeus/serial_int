@@ -20,7 +20,7 @@ serde_impl = ["serde"]
 
 [dependencies]
     [dependencies.serde]
-    version = "*"
+    version = "^1"
     features = ["derive"]
     optional = true
 
