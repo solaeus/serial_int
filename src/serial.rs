@@ -14,14 +14,6 @@ where
     /// its minimum.
     fn prev_increment(&self) -> Self;
 
-    /// Return the number of times this value can be incremented before reaching
-    /// its maximum, using Self to represent the count.
-    #[deprecated(
-        since = "0.3.0",
-        note = "Please use is_max_value instead."
-    )]
-    fn remaining_increments(&self) -> Self;
-
     /// Return a boolean representing whether the value is equal to its maximum.
     fn is_max_value(&self) -> bool;
 }
@@ -35,10 +27,6 @@ impl Serial for u8 {
 
     fn prev_increment(&self) -> Self {
         self.saturating_sub(1)
-    }
-
-    fn remaining_increments(&self) -> Self {
-        Self::MAX.saturating_sub(*self)
     }
 
     fn is_max_value(&self) -> bool {
@@ -57,10 +45,6 @@ impl Serial for u16 {
         self.saturating_sub(1)
     }
 
-    fn remaining_increments(&self) -> Self {
-        Self::MAX.saturating_sub(*self)
-    }
-
     fn is_max_value(&self) -> bool {
         self == &Self::MAX
     }
@@ -75,10 +59,6 @@ impl Serial for u32 {
 
     fn prev_increment(&self) -> Self {
         self.saturating_sub(1)
-    }
-
-    fn remaining_increments(&self) -> Self {
-        Self::MAX.saturating_sub(*self)
     }
 
     fn is_max_value(&self) -> bool {
@@ -97,10 +77,6 @@ impl Serial for u64 {
         self.saturating_sub(1)
     }
 
-    fn remaining_increments(&self) -> Self {
-        Self::MAX.saturating_sub(*self)
-    }
-
     fn is_max_value(&self) -> bool {
         self == &Self::MAX
     }
@@ -117,10 +93,6 @@ impl Serial for u128 {
         self.saturating_sub(1)
     }
 
-    fn remaining_increments(&self) -> Self {
-        Self::MAX.saturating_sub(*self)
-    }
-
     fn is_max_value(&self) -> bool {
         self == &Self::MAX
     }
@@ -135,10 +107,6 @@ impl Serial for usize {
 
     fn prev_increment(&self) -> Self {
         self.saturating_sub(1)
-    }
-
-    fn remaining_increments(&self) -> Self {
-        Self::MAX.saturating_sub(*self)
     }
 
     fn is_max_value(&self) -> bool {
