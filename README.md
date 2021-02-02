@@ -56,7 +56,8 @@ More examples are available in the [docs](https://docs.rs/serial_int/#examples).
 ### How to contribute
 
 Submit a patch. If you add a new implementation of Serial, add a submodule to
-`tests` using the provided functions.
+`tests` using the provided functions. **Please run the "test.sh" script before submitting a
+contribution.**
 
 This project is maintained on Sourcehut. Contributions through this platform are preferred. You may submit a [ticket](https://todo.sr.ht/~jeffa/serial_int) if you encounter a problem or want to request a feature. You may use the [mailing list](https://lists.sr.ht/~jeffa/serial_int) to contribute patches or public discussion.
 
