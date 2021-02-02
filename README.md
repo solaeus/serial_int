@@ -27,8 +27,9 @@ overflowing. This guarantees that the output values are unique to that generator
 - Usability
   - [X] Straightforward, documented API
   - [X] Includes support for all unsigned integers in the standard library
+  - [X] Iterator implementation
+  - [X] Serde support via feature flag
   - [X] `no_std`
-  - [X] Serde support via "serde_impl" feature flag
 - Safety
   - [X] Panic-free
   - [X] No dependencies
@@ -52,5 +53,16 @@ More examples are available in the [docs](https://docs.rs/serial_int/#examples).
 
 ## Contributing
 
+### How to contribute
+
 Submit a patch. If you add a new implementation of Serial, add a submodule to
 `tests` using the provided functions.
+
+This project is maintained on Sourcehut. Contributions through this platform are preferred. You may submit a [ticket](https://todo.sr.ht/~jeffa/serial_int) if you encounter a problem or want to request a feature. You may use the [mailing list](https://lists.sr.ht/~jeffa/serial_int) to contribute patches or public discussion.
+
+Contributions are also welcome on the Github mirror.
+
+### 🦀🔧 Contributors 🔧🦀
+
+- Jeff Anderson 🐙 (creator/maintainer) - [Sourcehut](https://sr.ht/~jeffa/) | [Github] (https://github.com/JKAnderson409) | https://jeffa.io
+- Yash Karandikar 🧞 (community contributor) - [Sourcehut](https://lists.sr.ht/~karx) | [Github](https://github.com/karx1) | https://karx.xyz/
