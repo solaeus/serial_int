@@ -1,11 +1,11 @@
 image: ubuntu/latest
 packages:
-  - rustup
+  - curl
 sources:
   - https://git.sr.ht/~jeffa/serial_int
 tasks:
   - setup: |
-      rustup install nightly
-  - push: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  - run: |
       cd serial_int
       sh test.sh
