@@ -18,98 +18,26 @@ where
     fn is_max_value(&self) -> bool;
 }
 
-impl Serial for u8 {
-    const START: Self = Self::MIN;
+macro_rules! impl_serial {
+    ($($t:ty),+ $(,)?) => {
+        $(
+            impl Serial for $t {
+                const START: Self = Self::MIN;
 
-    fn next_increment(&self) -> Self {
-        self.saturating_add(1)
-    }
+                fn next_increment(&self) -> Self {
+                    self.saturating_add(1)
+                }
 
-    fn prev_increment(&self) -> Self {
-        self.saturating_sub(1)
-    }
+                fn prev_increment(&self) -> Self {
+                    self.saturating_sub(1)
+                }
 
-    fn is_max_value(&self) -> bool {
-        self == &Self::MAX
-    }
-}
-
-impl Serial for u16 {
-    const START: Self = Self::MIN;
-
-    fn next_increment(&self) -> Self {
-        self.saturating_add(1)
-    }
-
-    fn prev_increment(&self) -> Self {
-        self.saturating_sub(1)
-    }
-
-    fn is_max_value(&self) -> bool {
-        self == &Self::MAX
+                fn is_max_value(&self) -> bool {
+                    self == &Self::MAX
+                }
+            }
+        )+
     }
 }
 
-impl Serial for u32 {
-    const START: Self = Self::MIN;
-
-    fn next_increment(&self) -> Self {
-        self.saturating_add(1)
-    }
-
-    fn prev_increment(&self) -> Self {
-        self.saturating_sub(1)
-    }
-
-    fn is_max_value(&self) -> bool {
-        self == &Self::MAX
-    }
-}
-
-impl Serial for u64 {
-    const START: Self = Self::MIN;
-
-    fn next_increment(&self) -> Self {
-        self.saturating_add(1)
-    }
-
-    fn prev_increment(&self) -> Self {
-        self.saturating_sub(1)
-    }
-
-    fn is_max_value(&self) -> bool {
-        self == &Self::MAX
-    }
-}
-
-impl Serial for u128 {
-    const START: Self = Self::MIN;
-
-    fn next_increment(&self) -> Self {
-        self.saturating_add(1)
-    }
-
-    fn prev_increment(&self) -> Self {
-        self.saturating_sub(1)
-    }
-
-    fn is_max_value(&self) -> bool {
-        self == &Self::MAX
-    }
-}
-
-impl Serial for usize {
-    const START: Self = Self::MIN;
-
-    fn next_increment(&self) -> Self {
-        self.saturating_add(1)
-    }
-
-    fn prev_increment(&self) -> Self {
-        self.saturating_sub(1)
-    }
-
-    fn is_max_value(&self) -> bool {
-        self == &Self::MAX
-    }
-}
+impl_serial!(u8, u16, u32, u64, u128, usize);
