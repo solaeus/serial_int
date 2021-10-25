@@ -11,7 +11,7 @@ keywords = [
 ]
 version = "1.0.0"
 authors = ["Jeff Anderson"]
-edition = "2018"
+edition = "2021"
 repository = "https://git.sr.ht/~jeffa/serial_int"
 license = "MIT"
 
