@@ -1,4 +1,4 @@
-/// A trait that defines how a type is used by SerialGenerator.
+/// Defines how a type is used by SerialGenerator.
 pub trait Serial
 where
     Self: Clone + Ord,
@@ -6,15 +6,15 @@ where
     /// The default initial and lowest possible value.
     const START: Self;
 
-    /// Return the next sequential value. Return an equal value if it is at its
-    /// maximum.
+    /// Returns the next sequential value. Returns an equal value if it is at
+    /// its maximum.
     fn next_increment(&self) -> Self;
 
-    /// Return the previous sequential value. Return an equal value if it is at
+    /// Returns the previous sequential value. Returns an equal value if it is at
     /// its minimum.
     fn prev_increment(&self) -> Self;
 
-    /// Return a boolean representing whether the value is equal to its maximum.
+    /// Returns a boolean representing whether the value is equal to its maximum.
     fn is_max_value(&self) -> bool;
 }
 
