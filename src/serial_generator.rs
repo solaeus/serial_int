@@ -3,6 +3,7 @@ use crate::Serial;
 use std::{
     fmt,
     fmt::{Display, Formatter},
+    mem::replace,
 };
 
 #[cfg(feature = "serde_impl")]
@@ -57,11 +58,8 @@ impl<T: Serial> SerialGenerator<T> {
     /// assert_eq!(1, gen.generate());
     /// ```
     pub fn generate(&mut self) -> T {
-        let current = self.value.clone();
-        let next = current.next_increment();
-        self.value = next;
-
-        current
+        let next = self.value.next_increment();
+        replace(&mut self.value, next)
     }
 
     /// Return the previously generated value.
@@ -116,7 +114,7 @@ impl<T: Serial> SerialGenerator<T> {
     }
 }
 
-impl <T: Serial, U: Serial + From<T>> From<T> for SerialGenerator<U> {
+impl<T: Serial, U: Serial + From<T>> From<T> for SerialGenerator<U> {
     fn from(other: T) -> Self {
         SerialGenerator::with_init_value(other.into())
     }
