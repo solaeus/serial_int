@@ -2,13 +2,13 @@
 #
 # Requires an SSH key that has been added to the Github account and to the
 # SourceHut account as a build secret.
-image: ubuntu/latest
+image: ubuntu/lts
 packages:
   - git
 sources:
   - https://git.sr.ht/~jeffa/serial_int
 secrets:
-  - 9ab6093e-ca54-43e8-b288-de2ed084dc0d
+  - c501201e-cdd5-448b-983b-ffcae7b215bf
 tasks:
   - setup: |
       echo "StrictHostKeyChecking no" > ~/.ssh/config
