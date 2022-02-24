@@ -19,7 +19,7 @@ pub fn creates_unique_values_until_end<T: Serial + Ord>(start: T) {
     assert!(!used.is_empty(), "Test did not check for anything...")
 }
 
-pub fn recreates_end_value<T: Serial + std::fmt::Debug>(init: T, end: T) {
+pub fn recreates_end_value<T: Serial + Clone + std::fmt::Debug>(init: T, end: T) {
     let mut gen = SerialGenerator::with_init_value(init.clone());
 
     assert_eq!(init, gen.generate());

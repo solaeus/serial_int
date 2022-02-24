@@ -1,10 +1,7 @@
 /**
 Defines how a type is used by SerialGenerator.
 */
-pub trait Serial
-where
-    Self: Clone + Ord,
-{
+pub trait Serial: PartialEq {
     /**
     The default initial and lowest possible value.
     */
