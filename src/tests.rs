@@ -47,5 +47,4 @@ macro_rules! test_type {
     }
 }
 
-#[cfg(test)]
 test_type!(u8, u16, u32, u64, u128, usize);
