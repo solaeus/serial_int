@@ -1,7 +1,5 @@
 #![cfg(test)]
 
-mod core_types;
-
 use crate::{Serial, SerialGenerator};
 
 pub fn creates_unique_values_until_end<T: Serial + Ord>(start: T) {
@@ -27,3 +25,27 @@ pub fn recreates_end_value<T: Serial + Clone + std::fmt::Debug>(init: T, end: T)
     assert_eq!(end, gen.generate());
     assert_eq!(end, gen.generate());
 }
+
+macro_rules! test_type {
+    ($($t:tt), *) => {
+        $(
+            mod $t {
+                use super::*;
+
+                #[test]
+                fn generator_creates_unique_values_until_end () {
+                    creates_unique_values_until_end(<$t>::MAX - 5);
+
+                }
+
+                #[test]
+                fn generator_recreates_end_value () {
+                    recreates_end_value($t::MAX - 1, $t::MAX);
+                }
+            }
+        )+
+    }
+}
+
+#[cfg(test)]
+test_type!(u8, u16, u32, u64, u128, usize);
