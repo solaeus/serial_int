@@ -15,7 +15,7 @@ A generator that creates instances of a [Serial] type.
 See the [crate] documentation for more information.
 */
 #[cfg_attr(feature = "serde_impl", derive(Deserialize, Serialize))]
-#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct SerialGenerator<T: Serial = u32> {
     value: T,
 }
